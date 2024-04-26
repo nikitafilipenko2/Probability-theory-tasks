@@ -9,7 +9,8 @@ from functions import combination
 from functions import combination_with_repeat
 from functions import placement
 from functions import placement_with_repeat
-
+ans='Ответ: '
+shift='\n'
 def task_1():
     answer=''
     first_number=randint(1,9)
@@ -73,4 +74,51 @@ f'б) удастся получить хотя бы один автограф;\n
     text+=answer
     print(text)
 
+def task_4():
+    prob_1=randint(4,9)/10
+    unp_1=round(1-prob_1,1)
+    prob_2=randint(4,9)/10
+    while prob_2==prob_1:
+        prob_2=randint(4,9)/10
+    unp_2=round(1-prob_2)
+    text=(f'Две россиянки участвуют в международном конкурсе '
+     f'по мировой экономике. Успешно пройти тур первая девушка '
+     f"может с вероятностью {prob_1}, вторая — {prob_2}. Вчера прошел "
+     f"третий, последний тур соревнований. Какова вероятность "
+     f'того, что у второй участницы успешно пройденных '
+     f'туров больше, чем у первой? \n')
+    answer=f'{ans} {unp_1}*{prob_2}+{prob_1}*{unp_1}*{prob_2}*{prob_2}+{prob_1}*{prob_1}*{unp_1}*{prob_2}*{prob_2}*{prob_2} или {unp_1*prob_2+prob_1*unp_1*prob_2*prob_2+prob_1*prob_1*unp_1*prob_2**3}'
+    text+=answer
+    print(text)
 
+def task_5():
+    text=(f'5. Из полного набора костей домино (28) наугад извлечена кость. Найти вероятность того, что вторую наугад'
+f' взятую кость можно приставить к первой, если первая оказалась:{shift}'
+f'а) дублем;{shift}'
+f'б) не дублем.{shift}')
+    answer=f'{ans} a) 6/27 или {round(6/27,2)}; б) 12/27 или {round(12/27,2)}'
+    text+=answer
+    print(text)
+
+
+
+def task_6():
+    prob_s=randint(4,9)/10
+    prob_m=randint(1,3)/10
+    print(prob_s,prob_m)
+    prob_j=0
+    uns=round(1-prob_s,1)
+    unm=round(1-prob_m,1)
+    unj=1
+    text=f'Три брата посеяли пшеницу, однако «...в долгом времени  ' \
+         f'аль вскоре приключилось с ними горе: кто-то в поле  ' \
+         f'стал ходить да пшеницу шевелить. Наконец они смекнули  ' \
+         f', чтоб стоять на карауле, хлеб ночами поберечь, злоговора  ' \
+         f'подстеречь». В их деревне всем известно, что старший  ' \
+         f'брат засыпает в дозоре с вероятностью {uns}, средний — {unm},  ' \
+         f' а у младшего бессонница. Найти вероятность того, что  ' \
+         f'в первую ночь удастся поймать вора, если очередность  ' \
+         f' дежурства определяется жребием.{shift}'
+    answer=f'{ans} {uns+unm+unj}/3 или {round((uns+unm+unj)/3,2)}'
+    text+=answer
+    print(text)
