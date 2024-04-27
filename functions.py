@@ -63,10 +63,14 @@ def local_lapl(num):
 def integr_lapl(num):
   if 3.61<num<3.89:
      return 0.4999
+  elif (-3.89)<num<(-3.61):
+     return -0.4999
   elif num>3.89:
       return 0.5
-  if num<0:
-      return -integr_teor_dict[num]
+  elif num<-3.89:
+      return -0.5
+  elif num<0:
+      return -integr_teor_dict[-num]
   else: return integr_teor_dict[num]
 
 

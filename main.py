@@ -303,3 +303,40 @@ def task_14():
     text+=answer
     print(text)
 
+
+#INTEGRALCHIKI
+def task_15():
+    pass
+def task_16():
+    pass
+def task_17():
+    pass
+#CHAPTER 7
+def task_18():
+    MX=choice([60,50,40])
+    DX=choice([250,160,360])
+    text=f'. Случайная величина X имеет нормальный закон ' \
+         f'распределения (MX = {MX}; DX = {DX}). Найти вероятность ' \
+         f'события X ∈ (10, 60).{shift}'
+    num_ans=integr_lapl(round((60-MX)/math.sqrt(DX),2))-integr_lapl(round((10-MX)/math.sqrt(DX),2))
+
+    text+=f'{ans} {num_ans}'
+    print(text)
+
+def task_19():
+    pass
+def task_20():
+    MX = choice([10, 15, 20])
+    d=choice([1.5,2.0,3.0])
+    wait=choice([12,16,20])
+    text=f'Период накопления состава на сортировочной станции ' \
+         f' имеет нормальное распределение с параметрами:' \
+         f'm = {MX} ч и  = {d} ч. С какой вероятностью период  ' \
+         f'накопления очередного состава окажется более {wait} ч?{shift}'
+    num_ans=round(0.5-integr_lapl(round((wait-MX)/d,2)),4)
+    text+=f'{ans} {num_ans}'
+    print(text)
+
+#Chapter 8
+def task_21():
+    pass
