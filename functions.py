@@ -55,6 +55,8 @@ for line in integr_teor_file:
 # Локальная
 def local_lapl(num):
     num = abs(num)
+    if num>=4:
+      return 0
     m1 = int(num*100//10)
     m2 = int(num*100%10)
     return local_teor_list[m1][m2]
@@ -63,10 +65,10 @@ def local_lapl(num):
 def integr_lapl(num):
   if 3.61<num<3.89:
      return 0.4999
-  elif (-3.89)<num<(-3.61):
-     return -0.4999
   elif num>3.89:
       return 0.5
+  elif -3.61>num>-3.89:
+     return -0.4999
   elif num<-3.89:
       return -0.5
   elif num<0:
