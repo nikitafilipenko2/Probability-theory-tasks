@@ -12,7 +12,9 @@ import os
 from tkinter import *
 from tkinter import messagebox
 from tkinter.ttk import Checkbutton
-
+import subprocess
+output = subprocess.check_output(r'powershell -command "[Environment]::GetFolderPath(\"Desktop\")"')
+path = output.decode().strip()
 def select_all_tasks():
     for check in check_list:
         check.set(chk_all.get())
@@ -35,23 +37,16 @@ def clicked():
             number += 1
     mess = messagebox.showinfo("Подтверждение", "Файл с заданиями обновится после нажатия на кнопку ОК!")
     if mess == 'ok':
-        save_files_to_desktop()
+        save_files()
         window.after(1000, window.destroy)
 
-def get_desktop_path():
-    return os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
 
-def save_files_to_desktop():
-    desktop_path = get_desktop_path()
-    save_files(desktop_path)
+def save_files():
 
-def save_files(directory):
-    zadanie_file_path = os.path.join(directory, 'задания.doc')
-    otvety_file_path = os.path.join(directory, 'ответы.doc')
 
     # Пример сохранения файлов (замените содержимое файла своим)
-    with open(zadanie_file_path, 'w', encoding='utf-8') as tasks:
-        with open(otvety_file_path, 'w', encoding='utf-8') as answers:
+    with open(path+'/задания.doc', 'w', encoding='utf-8') as tasks:
+        with open(path+'/ответы.doc', 'w', encoding='utf-8') as answers:
             for i in range(0, variants_count):
                 tasks.write(f'ВАРИАНТ {i + 1}\n')
                 answers.write(f'ВАРИАНТ {i + 1}\n')
@@ -92,8 +87,8 @@ def save_files(directory):
                         continue
 
                     if task == 4:
-                        coin_flip = randint(1, 2)  # 1 - вариант Егора, 2 - Маги, 3 - Димы
-                        if coin_flip == 1:  # задание Егора
+                        coin_flip = randint(1, 2)
+                        if coin_flip == 1:
                             text, answer = Nikita.task_4()
 
                         elif coin_flip == 2:
@@ -131,7 +126,7 @@ def save_files(directory):
                             text, answer = Nikita.task_7()
 
                         elif coin_flip == 2:
-                            text, answer = danila_main.task_7()
+                            text, answer = Nikita.task_7()
 
                         tasks.write(text + '\n')
                         answers.write(answer + '\n')
